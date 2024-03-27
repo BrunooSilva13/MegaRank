@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "M570wrSr1Hk2jA6L19xJ8VfIE6czw3iX8m3/O/Lx3qWtbU4ny/7ky1R/r09pW/w4JJjmMDN5RtwVg5l6EKxDHA==",
+  "dgSpecHash": "NlEK0WAcoJyfM8TdoN+9uQVF/cbMfAs+M6jAIZkHI5PUb6cGst4pv9WTnIYxr7RyFVs3XZt7DtEUydXTtMVsDg==",
   "success": true,
-  "projectFilePath": "/home/bruno/MegaRank/api/api.csproj",
+  "projectFilePath": "/home/bruno/MegaRank/api.csproj",
   "expectedPackageFiles": [
     "/home/bruno/.nuget/packages/bouncycastle.cryptography/2.2.1/bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "/home/bruno/.nuget/packages/google.protobuf/3.25.1/google.protobuf.3.25.1.nupkg.sha512",

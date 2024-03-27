@@ -22,10 +22,10 @@ namespace api.Services
                    CreateDatabase(mysqlConnection);
                 }
 
-                if (!TableExists(mysqlConnection))
-                {
-                    CreateTable(mysqlConnection);
-                }
+                // if (!TableExists(mysqlConnection))
+                // {
+                //     CreateTable(mysqlConnection);
+                // }
             }
         }
 
@@ -58,27 +58,27 @@ namespace api.Services
             }
         }
 
-        private void CreateTable(MySqlConnection connection)
-        {
+        //  private void CreateTable(MySqlConnection connection)
+        // {
             
-            using (MySqlCommand command = connection.CreateCommand())
-            {
-                command.CommandText = $"USE megarank_api";
-                command.ExecuteNonQuery();
+        //     using (MySqlCommand command = connection.CreateCommand())
+        //     {
+        //         command.CommandText = $"USE megarank_api";
+        //         command.ExecuteNonQuery();
 
-                command.CommandText = @"
-                    CREATE TABLE Users (
-                        Id INT AUTO_INCREMENT PRIMARY KEY,
-                        FirstName VARCHAR(255),
-                        PhotoLink VARCHAR(255),
-                        Experience INT,
-                        SocialMediaLink VARCHAR(255),
-                        Role VARCHAR(255)
-                    );";
+        //         command.CommandText = @"
+        //             CREATE TABLE Users (
+        //                 Id INT AUTO_INCREMENT PRIMARY KEY,
+        //                 FirstName VARCHAR(255),
+        //                 PhotoLink VARCHAR(255),
+        //                 Experience INT,
+        //                 SocialMediaLink VARCHAR(255),
+        //                 Role VARCHAR(255)
+        //             );";
 
 
-                command.ExecuteNonQuery();
-            }
-        }
+        //         command.ExecuteNonQuery();
+        //     }
+        // }
     }
 }

@@ -1791,11 +1791,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/bruno/MegaRank/api/api.csproj",
+      "projectUniqueName": "/home/bruno/MegaRank/api.csproj",
       "projectName": "api",
-      "projectPath": "/home/bruno/MegaRank/api/api.csproj",
+      "projectPath": "/home/bruno/MegaRank/api.csproj",
       "packagesPath": "/home/bruno/.nuget/packages/",
-      "outputPath": "/home/bruno/MegaRank/api/obj/",
+      "outputPath": "/home/bruno/MegaRank/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/bruno/.nuget/NuGet/NuGet.Config"
