@@ -23,9 +23,14 @@ class Program
         string connectionString = configuration.GetConnectionString("DefaultConnection");
 
         // Crie uma instância do DbContext passando a string de conexão como argumento
-        DbContext dbContext = new DbContext(connectionString);
+        builder.Services.AddSingleton<DbContext>(_ =>{
+            var connection = new DbContext(connectionString);
+            return connection;
+        });
+
         builder.Services.AddSingleton<UserRepository>();
         builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
 
         var app = builder.Build();
         if (app.Environment.IsDevelopment())
