@@ -1,4 +1,4 @@
-CREATE TABLE Users (
+CREATE TABLE IF NOT EXISTS users  (
                         Id INT AUTO_INCREMENT PRIMARY KEY,
                         FirstName VARCHAR(255),
                         PhotoLink VARCHAR(255),

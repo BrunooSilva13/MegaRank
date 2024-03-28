@@ -4,44 +4,51 @@ using System.Collections.Generic;
 
 namespace api.Services
 {
-public class UserRepository
-{
-    private readonly DbContext _context;
-
-    public UserRepository(DbContext context)
+    public class UserRepository
     {
-        _context = context;
-    }
+        private readonly DbContext _context;
 
-    public List<User> GetAllUsers()
-    {
-        List<User> users = new List<User>();
-
-        using (MySqlConnection connection = _context.GetConnection())
+        public UserRepository(DbContext context)
         {
-            connection.Open();
-            string query = "SELECT * FROM users";
-            using (MySqlCommand command = new MySqlCommand(query, connection))
+            _context = context;
+        }
+
+        public List<User> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+
+            using (MySqlConnection connection = _context.GetConnection())
             {
-                using (MySqlDataReader reader = command.ExecuteReader())
+
+                using (var comd = connection.CreateCommand())
                 {
-                    while (reader.Read())
+
+                    connection.Open();
+                    using (MySqlCommand command = new MySqlCommand(@"
+                    USE crud;
+                    SELECT Id, FirstName FROM Users", connection))
                     {
-                        var user = new User
+                      
+                        using (var reader = command.ExecuteReader())
                         {
-                            Id = reader.GetInt32("Id"),
-                            FirstName = reader.GetString("FirstName"),
-                            // Outros campos
-                        };
-                        users.Add(user);
+                            while (reader.Read())
+                            {
+                                var user = new User
+                                {
+                                    Id = reader.GetInt32("Id"),
+                                    FirstName = reader.GetString("FirstName"),
+                                    // Outros campos
+                                };
+                                users.Add(user);
+                            }
+                        }
                     }
                 }
             }
+
+            return users;
         }
 
-        return users;
+        // Métodos adicionais para adicionar, atualizar e excluir usuários manualmente
     }
-
-    // Métodos adicionais para adicionar, atualizar e excluir usuários manualmente
-}
 }
