@@ -2,6 +2,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using api.Models;
 using api.Services;
+using api.Controllers;
 
 class Program
 {
@@ -11,6 +12,9 @@ class Program
         var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
             .Build();
+            var port = configuration.GetValue<int>("Port");
+
+        Console.WriteLine($"Servidor rodando em: http://localhost:{port}");
 
         // Acesse a string de conexão do arquivo de configuração
         string connectionString = configuration.GetConnectionString("DefaultConnection");
