@@ -1,38 +1,45 @@
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using System;
 using api.Models;
 using api.Services;
 using api.Controllers;
 
+
 class Program
 {
     static void Main(string[] args)
     {
+        var builder = WebApplication.CreateBuilder(args);
         // Crie uma instância do IConfiguration para acessar as configurações
         var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
             .Build();
-            var port = configuration.GetValue<int>("Port");
 
-        Console.WriteLine($"Servidor rodando em: http://localhost:{port}");
+
 
         // Acesse a string de conexão do arquivo de configuração
         string connectionString = configuration.GetConnectionString("DefaultConnection");
 
         // Crie uma instância do DbContext passando a string de conexão como argumento
         DbContext dbContext = new DbContext(connectionString);
+        builder.Services.AddSingleton<UserRepository>();
+        builder.Services.AddControllers();
 
-        // Crie uma instância do UserRepository passando o DbContext como argumento
-        UserRepository userRepository = new UserRepository(dbContext);
-
-        // Obtenha todos os usuários do banco de dados usando o UserRepository
-        var users = userRepository.GetAllUsers();
-
-        // Imprima os usuários
-        Console.WriteLine("Lista de Usuários:");
-        foreach (var user in users)
+        var app = builder.Build();
+        if (app.Environment.IsDevelopment())
         {
-            Console.WriteLine($"ID: {user.Id}, Nome: {user.FirstName}, ..."); // Adicione outros campos conforme necessário
+            app.UseDeveloperExceptionPage();
         }
+
+        app.UseRouting();
+
+        app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+        app.Run();
     }
 }
