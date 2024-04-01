@@ -17,8 +17,6 @@ class Program
             .AddJsonFile("appsettings.json")
             .Build();
 
-
-
         // Acesse a string de conexão do arquivo de configuração
         string connectionString = configuration.GetConnectionString("DefaultConnection");
 
@@ -39,11 +37,10 @@ class Program
         }
 
         app.UseRouting();
-
-        app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+    
+        app.UseEndpoints(endpoints =>{
+            endpoints.MapControllers();
+        });
 
         app.Run();
     }
