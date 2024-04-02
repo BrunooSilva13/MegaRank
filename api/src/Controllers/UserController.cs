@@ -1,5 +1,6 @@
 using api.Models;
 using api.Services;
+using api.src.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -10,17 +11,17 @@ namespace api.Controllers
     public class UsersController : ControllerBase
     {
       
-        private readonly UserRepository _userRepository;
+        private readonly UserService _userService;
 
-        public UsersController(UserRepository userRepository)
+        public UsersController(UserService userService)
         {
-            _userRepository = userRepository;
+            _userService = userService;
         }
 
         [HttpGet]
         public ActionResult<List<User>> GetAllUsers()
         {
-            var users = _userRepository.GetAllUsers();
+            var users = _userService.GetAllUsers();
             return Ok(users);
         }
         

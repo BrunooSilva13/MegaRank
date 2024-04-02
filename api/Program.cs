@@ -5,6 +5,7 @@ using System;
 using api.Models;
 using api.Services;
 using api.Controllers;
+using api.src.Services;
 
 
 class Program
@@ -20,13 +21,8 @@ class Program
         
         string connectionString = configuration.GetConnectionString("DefaultConnection");
 
-        
-        // builder.Services.AddSingleton<DbContext>(_ =>{
-        //     var connection = new DbContext(connectionString);
-        //     return connection;
-        // });
-
         builder.Services.AddSingleton<UserRepository>();
+        builder.Services.AddSingleton<UserService>();
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
 
