@@ -21,7 +21,7 @@ namespace api.Services
         
             string connectionString = _configuration.GetConnectionString("DefaultConnection");
 
-           
+           //metodo de validação da porta
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                

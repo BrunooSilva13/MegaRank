@@ -21,10 +21,10 @@ class Program
         string connectionString = configuration.GetConnectionString("DefaultConnection");
 
         
-        builder.Services.AddSingleton<DbContext>(_ =>{
-            var connection = new DbContext(connectionString);
-            return connection;
-        });
+        // builder.Services.AddSingleton<DbContext>(_ =>{
+        //     var connection = new DbContext(connectionString);
+        //     return connection;
+        // });
 
         builder.Services.AddSingleton<UserRepository>();
         builder.Services.AddControllers();
