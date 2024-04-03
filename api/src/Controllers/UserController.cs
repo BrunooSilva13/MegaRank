@@ -10,12 +10,17 @@ namespace api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-      
         private readonly UserService _userService;
 
         public UsersController(UserService userService)
         {
             _userService = userService;
+        }
+        
+        [HttpPost]
+        public ActionResult CreateUser(User user)
+        {
+            return StatusCode(201, $"Created: User created successfully");
         }
 
         [HttpGet]
@@ -24,6 +29,6 @@ namespace api.Controllers
             var users = _userService.GetAllUsers();
             return Ok(users);
         }
-        
+      
     }
 }
