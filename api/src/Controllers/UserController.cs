@@ -2,6 +2,7 @@ using api.Models;
 using api.Services;
 using api.src.Services;
 using Microsoft.AspNetCore.Mvc;
+using Mysqlx.Crud;
 using System.Collections.Generic;
 
 namespace api.Controllers
@@ -16,10 +17,11 @@ namespace api.Controllers
         {
             _userService = userService;
         }
-        
+
         [HttpPost]
         public ActionResult CreateUser(User user)
         {
+            _userService.CreateUser(user);
             return StatusCode(201, $"Created: User created successfully");
         }
 
@@ -29,6 +31,13 @@ namespace api.Controllers
             var users = _userService.GetAllUsers();
             return Ok(users);
         }
-      
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateUser(string id, User user)
+        {
+            _userService.UpdateUser(user);
+            return Ok(user);
+        }
+
     }
 }

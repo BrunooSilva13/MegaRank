@@ -22,6 +22,15 @@ namespace api.src.Services
 
         }
 
+        public void CreateUser(User user)
+        {
+            _userRepository.CreateUser(user);
 
+        }
+
+        public void UpdateUser(User user)
+        {
+            _userRepository.UpdateUser(user);
+        }
     }
 }
