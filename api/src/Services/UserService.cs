@@ -32,5 +32,10 @@ namespace api.src.Services
         {
             _userRepository.UpdateUser(user);
         }
+
+        public void DeleteUser(string userId)
+        {
+            _userRepository.DeleteUser(userId);
+        }
     }
 }

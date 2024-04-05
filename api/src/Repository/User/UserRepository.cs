@@ -100,5 +100,24 @@ namespace api.Services
             }
         }
 
+        public void DeleteUser(string id)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "DELETE FROM users WHERE id = @id";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }
+
+
+

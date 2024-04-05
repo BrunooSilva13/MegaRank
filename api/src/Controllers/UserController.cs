@@ -39,5 +39,12 @@ namespace api.Controllers
             return Ok(user);
         }
 
+        [HttpDelete("{id}")]
+        public ActionResult DeleteUser(string id)
+        {
+            _userService.DeleteUser(id);
+            return Ok();
+        }
+
     }
 }
